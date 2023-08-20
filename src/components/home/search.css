@@ -1,0 +1,10 @@
+.searchPage{
+    position: relative;
+    width: 75%; 
+    z-index: -10; 
+    right: 0;
+    top: 0;
+    margin-left: 8px; 
+    display: flex;
+    flex-direction: column;
+}

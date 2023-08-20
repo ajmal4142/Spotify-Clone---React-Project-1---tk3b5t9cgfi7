@@ -1,0 +1,37 @@
+
+
+.signup{
+    background: linear-gradient(90deg , #af2896,#589bf5);
+    height: 4rem;
+    width: 98.6%;
+    position: absolute;
+    z-index: 1;
+    left: 13px;
+    bottom: 0;
+    font-size: small;
+    align-items: center;
+    display: flex;
+    padding: 16px 8px 16px 8px;
+    margin-top: 8px;
+    justify-content: space-between;
+}
+
+
+.signPara{
+    font-weight: bold;
+  }
+  
+.signButton{
+    border-radius: 25px;
+    color: black;
+    margin-top: 4px;
+    margin-right: 15px;
+    padding: 10px 25px 10px 25px;
+    font-size: 15px;
+    background-color: white;
+    font-weight: bold;
+    border: none;
+}
+  .signButton:hover{
+    background-color: aliceblue;
+  }

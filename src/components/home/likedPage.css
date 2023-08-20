@@ -1,0 +1,35 @@
+.LikedPage{
+    position: relative;
+    width:100%; 
+    right: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.likedBody{
+    background-color: #242424;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+    
+    flex: 1;
+    max-height: calc(93vh - 80px); /* Adjust as needed */
+    overflow-y: scroll;
+    overflow-x: hidden;
+    
+}
+
+.mainSection{
+    background-color:#6459ac ;
+    width: 100%;
+    color: white;
+    padding: 10px; 
+    box-sizing: border-box;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }

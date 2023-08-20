@@ -1,0 +1,95 @@
+
+.navBar{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 16px;
+    padding-top: 14px;
+    border-radius: 8px;
+    margin-top: 8px;
+    align-items: center;
+}
+
+.backNForward{
+    background-color: rgba(255, 255, 255, 0.1);
+    font-size: 1.875rem;
+    padding: 0.25rem; 
+    border-radius: 50%; 
+}
+
+.signUpLink {
+    border-radius: 9999px;
+    margin-top: 2rem;
+    padding-left: 2rem;
+    font-size: 1rem;
+    padding-right: 1rem;
+    color: #a7a7a7;
+    font-weight: 600;
+    cursor: pointer;
+  }
+.premiumLink {
+    border-radius: 9999px;
+    margin-top: 2rem;
+    padding-left: 2rem;
+    font-size: 1rem;
+    color: #a7a7a7;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .premiumLink:hover , .signUpLink:hover{
+    color: #ffffff;
+  }
+
+.logInLink{
+    border-radius: 9999px;
+    color: black;
+    margin-top: 1rem;
+    font-size: 1rem;
+    padding: 14px 30px 14px 30px;
+    background-color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.logInLink:hover{
+    background-color: rgb(204, 202, 202);
+}
+
+#searchBar{
+    width: 89%;
+    background-color: #242424;
+    margin-right: 10px;
+    border: none;
+    height: 84%;
+    color: white;
+    padding-left: 5px;
+}
+
+#searchBar:focus{
+    border: none;
+}
+
+.searchBarSection{
+    background: #242424;
+    border-radius: 30px;
+    width: 30%;
+    display: flex;
+    align-items:center;
+    height: 45px;
+    
+}
+
+.css-4t3x6l-MuiPaper-root-MuiDrawer-paper{
+    background-color: rgb(0, 0, 0);
+    color: rgb(179, 179, 179);
+    padding: 20px;
+}
+
+@media screen and (max-width: 711px) {
+    .logInLink{
+      display: none;
+    }
+    .signUpLink{
+        display: none;
+    }
+
+  }
