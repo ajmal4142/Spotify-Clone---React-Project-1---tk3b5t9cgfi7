@@ -76,7 +76,7 @@
     height: 201px;
     margin-bottom: 16px;
     white-space: nowrap;
-    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .sectionGrid::-webkit-scrollbar {
