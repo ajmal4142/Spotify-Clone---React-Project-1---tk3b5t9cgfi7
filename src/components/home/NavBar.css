@@ -84,12 +84,17 @@
     padding: 20px;
 }
 
-@media screen and (max-width: 711px) {
+@media screen and (max-width: 750px) {
     .logInLink{
       display: none;
     }
     .signUpLink{
         display: none;
     }
-
+    .premiumLink{
+        display: none;
+    }
+    .searchBarSection{
+        width: 100%;
+    }
   }

@@ -1,4 +1,5 @@
 export const initialState = {
+  list: null,
   token: null,
   selectedCard: null,
   selectedSong: null,
@@ -7,10 +8,13 @@ export const initialState = {
   name: null,
   id: null,
   favorites: [],
+  searchSong: null,
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case "SET_LIST":
+      return { ...state, list: action.payload };
     case "SET_SELECTED_CARD":
       return { ...state, selectedCard: action.payload };
     case "SET_SELECTED_SONG":
@@ -25,6 +29,8 @@ const reducer = (state, action) => {
       return { ...state, name: action.payload };
     case "SET_SELECTED_ID":
       return { ...state, name: action.payload };
+    case "SET_SEARCH_SONG":
+      return { ...state, searchSong: action.payload };
     case "REMOVE_FAVORITE":
       const songIdToRemove = action.payload.album;
       const newFavoritesRemove = state.favorites.filter(

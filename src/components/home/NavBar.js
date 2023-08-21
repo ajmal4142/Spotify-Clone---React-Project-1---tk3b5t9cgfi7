@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaGreaterThan, FaLessThan } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import "./NavBar.css";
@@ -20,39 +20,51 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 function NavBar() {
   const navigate = useNavigate();
-  const [{ searchClicked, token, name }, dispatch] = useStateProvider();
+  const [{ searchClicked, token, name, searchSong }, dispatch] =
+    useStateProvider();
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
-  const projectId = "f104bi07c490";
 
-  const handleSearchInputChange = async (event) => {
-    const query = event.target.value;
-    setSearchQuery(query);
+  const handleChange = (e) => {
+    setSearchQuery(e.target.value);
+    console.log(e);
+  };
+  useEffect(() => {
+    console.log(searchSong);
+  }, [searchSong]);
 
-    try {
-      const response = await axios.get(
-        `https://academics.newtonschool.co/api/v1/music/song?filter=`,
-        {
-          headers: {
-            projectId: projectId,
-          },
-          params: {
-            filter: JSON.stringify({ title: query }),
-          },
-        },
-      );
+  const handleInput = async (e) => {
+    if (e.key === "Enter") {
+      try {
+        let headersList = {
+          projectId: "f104bi07c490",
+        };
 
-      console.log(query);
-      console.log("Response status:", response.status);
-      console.log("Response status text:", response.statusText);
+        let reqOptions = {
+          url: `https://academics.newtonschool.co/api/v1/music/song?title=${searchQuery}`,
+          method: "GET",
+          headers: headersList,
+        };
 
-      const data = response.data;
-      console.log("data", data);
-      setSearchResults(data);
-    } catch (error) {
-      console.error("Error fetching search results:", error);
+        let response = await axios.request(reqOptions);
+        const songData = response.data.data[0];
+
+        console.log(songData);
+        dispatch({ type: "SET_SEARCH_SONG", payload: songData }); // Providing the Search data to glodal
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
+  // const handleSearchInputChange = async (event) => {
+  //   const query = event.target.value;
+  //   setSearchQuery(query);
+  //   try {
+
+  //   } catch (error) {
+  //     console.log(searchQuery);
+  //     console.error(error);
+  //   }
+  // };
 
   const handleLogOut = () => {
     dispatch({ type: "SET_NAME", payload: null });
@@ -85,6 +97,7 @@ function NavBar() {
       <ListItem
         button
         onClick={() => {
+          dispatch({ type: "SET_SEARCH_CLICKED", payload: true });
           navigate("/search");
         }}>
         <ListItemText primary="Search" />
@@ -184,7 +197,8 @@ function NavBar() {
               id="searchBar"
               placeholder="What do you want to listen to?"
               value={searchQuery}
-              onChange={handleSearchInputChange}
+              onChange={handleChange}
+              onKeyUp={(e) => handleInput(e)}
             />
           </div>
         )}

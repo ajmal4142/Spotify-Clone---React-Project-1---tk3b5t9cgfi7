@@ -22,6 +22,7 @@ import SignUp from "./components/sideBar/SignUp";
 import LikedPage from "./components/home/LikedPage";
 import Premium from "./layouts/Premium";
 import Forgot from "./components/Login/Forgot";
+import ShowAll from "./components/home/ShowAll";
 
 const App = () => {
   const location = useLocation();
@@ -95,6 +96,7 @@ const Main = () => {
             path="/liked-song"
             element={favorites ? <LikedPage /> : <Home />}
           />
+          <Route path="/showall" element={<ShowAll />} />
         </Routes>
         {token ? <SongBar /> : <SignUp />}
       </div>

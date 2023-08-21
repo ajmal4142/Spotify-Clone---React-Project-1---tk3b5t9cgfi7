@@ -16,7 +16,6 @@
 }
 
 .card:hover {
-    background: #303030;
     transform: scale(1.1);
 }
 

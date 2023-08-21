@@ -20,7 +20,7 @@ import favoriteimg from "./favoriteimg.jpg";
 function Home() {
   const navigate = useNavigate();
   const [musicList, setMusicList] = useState([]);
-  const [{ selectedCard, favorites }] = useStateProvider();
+  const [{ selectedCard, favorites, list }, dispatch] = useStateProvider();
   // const [screenWid, SetScreenWid] = useState(0);
   const projectId = "f104bi07c490";
 
@@ -32,6 +32,7 @@ function Home() {
         },
       })
       .then((response) => {
+        dispatch({ type: "SET_List", payload: response.data.data });
         setMusicList(response.data.data);
       })
       .catch((error) => {
@@ -86,7 +87,7 @@ function Home() {
         ) : null}
         <div className="sections">
           <span className="sectionHeading">Albums</span>
-          <Link to="/focus" style={{ color: "white", paddingRight: "15px" }}>
+          <Link to="/showall" style={{ color: "white", paddingRight: "15px" }}>
             Show All
           </Link>
         </div>
@@ -97,7 +98,7 @@ function Home() {
         </div>
         <div className="sections">
           <span className="sectionHeading">Songs</span>
-          <Link to="/focus" style={{ color: "white", paddingRight: "15px" }}>
+          <Link to="/showall" style={{ color: "white", paddingRight: "15px" }}>
             Show All
           </Link>
         </div>
@@ -108,7 +109,7 @@ function Home() {
         </div>
         <div className="sections">
           <span className="sectionHeading">Spotify List</span>
-          <Link to="/focus" style={{ color: "white", paddingRight: "15px" }}>
+          <Link to="/showall" style={{ color: "white", paddingRight: "15px" }}>
             Show All
           </Link>
         </div>

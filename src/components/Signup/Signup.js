@@ -8,7 +8,6 @@ import {
   FormControlLabel,
   FormLabel,
   Input,
-  InputLabel,
   MenuItem,
   Radio,
   RadioGroup,
@@ -116,14 +115,19 @@ const Signup = () => {
             sx={{
               display: "flex",
               justifyContent: "center",
-              m: "25px",
-              fontWeight: 700,
+              textAlign: "center",
+              my: "33px",
+              fontWeight: 900,
+              fontSize: "25px",
+              // "@media (max-width: 500px)": {
+              //   fontSize: "25px",
+              // },
             }}>
-            Sign up for free
+            Sign up for free to start listening.
           </Typography>
           <form className="signup-form" onSubmit={handleFormSubmit}>
             <FormControl fullWidth margin="normal">
-              <InputLabel htmlFor="email">What's your email?</InputLabel>
+              <label for="email">What's your email?</label>
               <Input
                 type="email"
                 id="email"
@@ -136,7 +140,7 @@ const Signup = () => {
             </FormControl>
 
             <FormControl fullWidth margin="normal">
-              <InputLabel htmlFor="password">Create a password</InputLabel>
+              <label for="password">Create a password</label>
               <Input
                 type="password"
                 id="password"
@@ -149,9 +153,7 @@ const Signup = () => {
             </FormControl>
 
             <FormControl fullWidth margin="normal">
-              <InputLabel htmlFor="username">
-                What should we call you?
-              </InputLabel>
+              <label for="username">What should we call you?</label>
               <Input
                 type="text"
                 id="username"
@@ -165,7 +167,7 @@ const Signup = () => {
 
             <div className="birthdate-input">
               <FormControl className="input-group" margin="normal">
-                <InputLabel>Year</InputLabel>
+                <label>Year</label>
                 <Input
                   type="text"
                   id="year"
@@ -178,7 +180,7 @@ const Signup = () => {
                 />
               </FormControl>
               <FormControl className="input-group" margin="normal">
-                <InputLabel>Month</InputLabel>
+                <label>Month</label>
                 <Input
                   type="text"
                   id="month"
@@ -191,7 +193,7 @@ const Signup = () => {
                 />
               </FormControl>
               <FormControl className="input-group" margin="normal">
-                <InputLabel>Day</InputLabel>
+                <label>Day</label>
                 <Input
                   type="text"
                   id="day"
@@ -206,7 +208,9 @@ const Signup = () => {
             </div>
 
             <FormControl fullWidth margin="normal">
-              <InputLabel htmlFor="gender">What's your gender?</InputLabel>
+              <label for="gender" style={{ marginBottom: "15px" }}>
+                What's your gender?
+              </label>
               <Select
                 id="gender"
                 name="gender"
@@ -229,7 +233,7 @@ const Signup = () => {
                 checked={marketingChecked}
                 onChange={(e) => setMarketingChecked(e.target.checked)}
               />
-              <label htmlFor="marketing">
+              <label for="marketing">
                 I would prefer not to receive marketing messages from Spotify
               </label>
             </Box>
@@ -242,9 +246,8 @@ const Signup = () => {
                 checked={shareDataChecked}
                 onChange={(e) => setShareDataChecked(e.target.checked)}
               />
-              <label htmlFor="shareData">
-                Share my registration data with Spotify's content providers for
-                marketing purposes.
+              <label for="shareData">
+                Share my registration data with Spotify's content for providers.
               </label>
             </Box>
 
@@ -256,7 +259,10 @@ const Signup = () => {
             </button>
           </form>
 
-          <Typography variant="body2" className="policy-link">
+          <Typography
+            variant="body2"
+            className="policy-link"
+            sx={{ fontSize: "10px" }}>
             By clicking on sign-up, you agree to{" "}
             <Link to="/" className="text-black">
               Spotify's Terms and Conditions of Use
@@ -268,7 +274,10 @@ const Signup = () => {
             .
           </Typography>
 
-          <Typography variant="body2" className="login-link">
+          <Typography
+            variant="body2"
+            className="login-link"
+            sx={{ textAlign: "center", fontSize: "18px", my: "20px" }}>
             Have an account? <Link to="/login">Log in</Link>.
           </Typography>
         </div>

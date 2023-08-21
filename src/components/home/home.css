@@ -73,11 +73,10 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    height: 218px;
+    height: 201px;
     margin-bottom: 16px;
-    overflow-y: hidden;
-    overflow-x: scroll;
     white-space: nowrap;
+    overflow-x: auto;
 }
 
 .sectionGrid::-webkit-scrollbar {
