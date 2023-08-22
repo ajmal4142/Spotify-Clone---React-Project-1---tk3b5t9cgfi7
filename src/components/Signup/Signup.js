@@ -89,6 +89,7 @@ const Signup = () => {
       name: username,
       email: email,
       password: password,
+      appType: "music",
     });
 
     reqOptions.data = bodyContent; // Update the data in the request options

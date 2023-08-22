@@ -46,6 +46,7 @@ const Login = () => {
     const bodyContent = JSON.stringify({
       email: email,
       password: password,
+      appType: "music",
     });
 
     reqOptions.data = bodyContent;
