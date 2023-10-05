@@ -37,22 +37,22 @@ const AlbumSongs = ({ album }) => {
 
     return localTime.toLocaleString();
   };
-  const styles = {
-    container: {
-      display: "table-cell",
-      color: "white",
-      [theme.breakpoints.down("md")]: {
-        display: "none",
-      },
-    },
-    container_two: {
-      display: "table-cell",
-      color: "white",
-      [theme.breakpoints.down("md")]: {
-        display: "none",
-      },
-    },
-  };
+  // const styles = {
+  //   container: {
+  //     display: "table-cell",
+  //     color: "white",
+  //     [theme.breakpoints.down("900px")]: {
+  //       display: "none",
+  //     },
+  //   },
+  //   container_two: {
+  //     display: "table-cell",
+  //     color: "white",
+  //     [theme.breakpoints.down("900px")]: {
+  //       display: "none",
+  //     },
+  //   },
+  // };
 
   return (
     <Box
@@ -90,16 +90,12 @@ const AlbumSongs = ({ album }) => {
         </Box>
 
         <Box>
-          <div style={{ display: "flex", background: "#223c59" }}>
-            <button className="faplayclass">
-              <FaPlay className="faplay" />
-            </button>
-          </div>
           <TableContainer
             component={Paper}
             sx={{
               background: "linear-gradient(to bottom, #223c59, #121212)",
               marginBottom: "47px",
+              pt: "20px",
             }}>
             <Table aria-label="simple table">
               <TableHead>
@@ -108,10 +104,22 @@ const AlbumSongs = ({ album }) => {
                     #
                   </TableCell>
                   <TableCell sx={{ color: "white" }}>Title</TableCell>
-                  <TableCell align="right" sx={styles.container}>
+                  <TableCell
+                    align="right"
+                    sx={{
+                      display: "table-cell",
+                      color: "white",
+                      "@media(max-width:600px)": { display: "none" },
+                    }}>
                     Album
                   </TableCell>
-                  <TableCell align="right" sx={styles.container_two}>
+                  <TableCell
+                    align="right"
+                    sx={{
+                      display: "table-cell",
+                      color: "white",
+                      "@media(max-width:1100px)": { display: "none" },
+                    }}>
                     Date Added
                   </TableCell>
                 </TableRow>
@@ -124,6 +132,7 @@ const AlbumSongs = ({ album }) => {
                     sx={{
                       "&:last-child td, &:last-child th": { border: 0 },
                       color: "white",
+                      cursor: "pointer",
                     }}>
                     <TableCell
                       component="th"
@@ -145,10 +154,23 @@ const AlbumSongs = ({ album }) => {
                       </div>
                     </TableCell>
 
-                    <TableCell align="right" sx={styles.container}>
+                    <TableCell
+                      align="right"
+                      sx={{
+                        display: "table-cell",
+                        color: "white",
+                        "@media(max-width:600px)": { display: "none" },
+                      }}>
                       {song.title}
                     </TableCell>
-                    <TableCell align="right" sx={styles.container_two}>
+                    <TableCell
+                      align="right"
+                      sx={{
+                        display: "table-cell",
+                        color: "white",
+                        "@media(max-width:1100px)": { display: "none" },
+                      }}
+                      className="hide-on-desktop">
                       {dateCalculator(song.dateOfRelease)}
                     </TableCell>
                   </TableRow>

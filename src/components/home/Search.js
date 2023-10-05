@@ -16,7 +16,6 @@ import axios from "axios";
 function Search() {
   const [{ searchSong }, dispatch] = useStateProvider();
 
-  // const [musicList, setMusicList] = useState([]);
   // const navigate = useNavigate();
   // const projectId = "f104bi07c490";
 

@@ -62,13 +62,9 @@ function Home() {
   }, [width]);
 
   return (
-    <div
-      className="homePage"
-      onClick={() => {
-        console.log("clicked/...");
-      }}>
+    <div className="homePage">
       <div className="homeBody">
-        {favorites.length !== 0 ? (
+        {favorites.length !== 0 && localStorage.getItem("jwtToken") ? (
           <Card sx={{ maxWidth: 200 }} onClick={() => navigate("/liked-song")}>
             <CardActionArea>
               <CardMedia

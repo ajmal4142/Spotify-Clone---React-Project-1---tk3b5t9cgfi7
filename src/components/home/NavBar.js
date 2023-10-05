@@ -71,6 +71,8 @@ function NavBar() {
     dispatch({ type: "SET_TOKEN", payload: null });
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("username");
+
+    navigate("/");
   };
 
   const [open, setOpen] = useState(false);
@@ -91,6 +93,7 @@ function NavBar() {
         button
         onClick={() => {
           navigate("/");
+          setOpen(false);
         }}>
         <ListItemText primary="Home" />
       </ListItem>
@@ -99,6 +102,7 @@ function NavBar() {
         onClick={() => {
           dispatch({ type: "SET_SEARCH_CLICKED", payload: true });
           navigate("/search");
+          setOpen(false);
         }}>
         <ListItemText primary="Search" />
       </ListItem>
@@ -106,6 +110,7 @@ function NavBar() {
         button
         onClick={() => {
           navigate("/premium");
+          setOpen(false);
         }}>
         <ListItemText primary="Premium" />
       </ListItem>
@@ -113,6 +118,7 @@ function NavBar() {
         button
         onClick={() => {
           navigate("/liked-song");
+          setOpen(false);
         }}>
         <ListItemText primary="Favorites" />
       </ListItem>
@@ -122,6 +128,7 @@ function NavBar() {
             button
             onClick={() => {
               navigate("/signup");
+              setOpen(false);
             }}>
             <ListItemText primary="Sign Up" />
           </ListItem>
@@ -129,6 +136,7 @@ function NavBar() {
             button
             onClick={() => {
               navigate("/login");
+              setOpen(false);
             }}>
             <ListItemText primary="Log In" />
           </ListItem>
@@ -139,6 +147,7 @@ function NavBar() {
             <ListItemText
               onClick={() => {
                 navigate("/forgot");
+                setOpen(false);
               }}
               primary="Change Password"
             />
@@ -147,6 +156,7 @@ function NavBar() {
             <ListItemText
               onClick={() => {
                 navigate("/login");
+                setOpen(false);
               }}
               primary="Log Out"
             />
@@ -159,11 +169,11 @@ function NavBar() {
   return (
     <div>
       <div className="navBar">
-        <div style={{ display: "flex" }}>
-          <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+        <div id="navBarId">
+          {/* <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
             <FaLessThan className="backNForward" />
             <FaGreaterThan className="backNForward" />
-          </div>
+          </div> */}
           <AppBar
             position="static"
             sx={{

@@ -35,7 +35,12 @@
     justify-content: center;
     padding: 0.75rem;
     margin-bottom: 75px;
-    
+    cursor: pointer;
+
+}
+
+.play_btn:hover{
+    padding: 1rem;
 }
 
 .card:hover .play_btn {

@@ -9,6 +9,7 @@ import { AiOutlineHeart, AiOutlinePlaySquare } from "react-icons/ai";
 import { IoMdSkipBackward, IoMdSkipForward } from "react-icons/io";
 import "./songBar.css";
 import playButton from "./playButton.png";
+import { Box } from "@mui/material";
 
 const SongBar = ({ songs }) => {
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
@@ -97,17 +98,17 @@ const SongBar = ({ songs }) => {
   return (
     <div className="songBar">
       {selectedSong ? (
-        <div
+        <Box
           style={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
+            "@media(max-width:370px)": {
+              display: "none",
+            },
           }}>
-          <img
-            src={selectedSong.thumbnail}
-            style={{ width: "30px", height: "30px" }}
-          />
+          <img src={selectedSong.thumbnail} className="unknownImg" />
           <h4
             style={{
               display: "flex",
@@ -116,16 +117,19 @@ const SongBar = ({ songs }) => {
             }}>
             {selectedSong.title}
           </h4>
-        </div>
+        </Box>
       ) : (
-        <div
-          style={{
+        <Box
+          sx={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
+            "@media(max-width:370px)": {
+              display: "none",
+            },
           }}>
-          <img src={playButton} style={{ width: "30px", height: "30px" }} />
+          <img src={playButton} className="unknownImg" />
           <h4
             style={{
               display: "flex",
@@ -134,7 +138,7 @@ const SongBar = ({ songs }) => {
             }}>
             Unknown Song
           </h4>
-        </div>
+        </Box>
       )}
       <div
         style={{
@@ -154,17 +158,21 @@ const SongBar = ({ songs }) => {
           <IoMdSkipForward onClick={handleNext} className="songIcons" />
           <BiRepeat onClick={handlePlayAgain} className="songIcons" />
         </div>
-        <audio ref={audioRef} controls style={{ width: "75%" }}>
+        <audio ref={audioRef} controls className="audioSpotify">
           <source src={audiourl} type="audio/mpeg" />
           Your browser does not support the audio element.
         </audio>
       </div>
-      <div style={{ display: "flex" }}>
+      <Box
+        sx={{
+          display: "flex",
+          "@media(max-width:600px)": { display: "none" },
+        }}>
         <BsArrowsAngleContract className="songIcons" />
         <BsSpeakerFill className="songIcons" />
         <PiMicrophoneStageDuotone className="songIcons" />
         <PiQueueLight className="songIcons" />
-      </div>
+      </Box>
     </div>
   );
 };

@@ -19,38 +19,6 @@ import favoriteimg from "./favoriteimg.jpg";
 function LikedPage() {
   const [{ favorites }, dispatch] = useStateProvider();
   console.log("fav", favorites);
-  const [musicList, setMusicList] = useState([]);
-  const projectId = "f104bi07c490";
-  useEffect(() => {
-    const fetchArtistData = async (artistId) => {
-      try {
-        const response = await axios.get(
-          `https://academics.newtonschool.co/api/v1/music/album/${artistId}`,
-          {
-            headers: {
-              projectId: projectId,
-            },
-          },
-        );
-        return response.data;
-      } catch (error) {
-        console.error("Error fetching artist data:", error);
-        return null;
-      }
-    };
-    const updateMusicList = async () => {
-      const artistDataPromises = favorites.map((artistId) =>
-        fetchArtistData(artistId),
-      );
-      const artistData = await Promise.all(artistDataPromises);
-      console.log("artistData", artistData);
-      console.log("promise", artistDataPromises);
-      setMusicList(artistData.filter((data) => data !== null));
-    };
-
-    updateMusicList();
-  }, [favorites, projectId]);
-
   const navigate = useNavigate();
   const handleSongClick = () => {
     navigate("/song");
@@ -86,11 +54,9 @@ function LikedPage() {
               height: "1px",
             }}></div>
         </div>
-        <Grid container spacing={2} sx={{ ml: "30px", mb: "40px" }}>
-          {console.log(musicList)}
-          {console.log(musicList[0]?.data)}
-          {musicList[0]?.data?.songs?.map((music) => (
-            <Grid item xs={12} sm={6} md={4} lg={3} key={music.id}>
+        <Box display="flex" flexWrap="wrap" gap="20px" ml="25px" mr="25px">
+          {favorites?.map((music) => (
+            <Box key={music.id}>
               <Card
                 sx={{ maxWidth: 160 }}
                 // onClick={() => {
@@ -113,9 +79,9 @@ function LikedPage() {
                   </CardContent>
                 </CardActionArea>
               </Card>
-            </Grid>
+            </Box>
           ))}
-        </Grid>
+        </Box>
 
         <Footer />
       </div>

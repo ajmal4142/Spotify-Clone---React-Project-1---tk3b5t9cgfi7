@@ -35,11 +35,15 @@ const ArtistSong = () => {
   };
 
   const handleFavoriteClick = (song) => {
-    console.log("Before dispatch - favorites:", favorites);
-    console.log("songssssss", song);
-    dispatch({ type: "ADD_FAVORITE", payload: song.album });
-
-    console.log("after dispatch - favorites:", favorites);
+    if (isFavorite(song)) {
+      dispatch({ type: "REMOVE_FAVORITE", payload: song });
+    } else {
+      if (!token) {
+        alert("Please Login");
+      } else {
+        dispatch({ type: "ADD_FAVORITE", payload: song });
+      }
+    }
   };
   const handleRemoveFavoriteClick = (song) => {
     if (isFavorite(song)) {
@@ -99,18 +103,19 @@ const ArtistSong = () => {
             <button className="faplayclass">
               <FaPlay className="faplay" />
             </button>
-            {isFavorite(selectedSong) ? (
+            {!isFavorite(selectedSong) ? (
               <FavoriteBorderIcon
-                onClick={() => handleRemoveFavoriteClick(selectedSong)}
+                onClick={() => handleFavoriteClick(selectedSong)}
                 sx={{ width: "40px", height: "40px", marginLeft: "20px" }}
               />
             ) : (
-              <FavoriteBorderIcon
+              <FavoriteIcon
                 onClick={() => handleFavoriteClick(selectedSong)}
                 sx={{
                   width: "40px",
                   height: "40px",
                   marginLeft: "20px",
+                  color: "pink",
                 }}
               />
             )}

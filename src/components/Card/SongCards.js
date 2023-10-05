@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useStateProvider } from "../utils/StateProvider";
 import { Box, Typography, createTheme } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import { FaPlay } from "react-icons/fa";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -48,17 +49,29 @@ function SongCards({ album }) {
   };
 
   const handleFavoriteClick = (song) => {
-    if (isFavorite(song)) {
-      dispatch({ type: "REMOVE_FAVORITE", payload: song });
+    if (!token) {
+      alert("Please Login");
     } else {
-      dispatch({ type: "ADD_FAVORITE", payload: song });
+      dispatch({ type: "TOGGLE_FAVORITE", payload: selectedSong });
+
+      var favoritesData = JSON.parse(localStorage.getItem("favorites")) || [];
+      const isSongInFavorites = favoritesData.some(
+        (item) => item._id === song._id,
+      );
+
+      if (!isSongInFavorites) {
+        favoritesData.push(song);
+      } else {
+        const updatedFavorites = favoritesData.filter(
+          (item) => item._id !== song._id,
+        );
+        favoritesData = updatedFavorites;
+      }
+
+      localStorage.setItem("favorites", JSON.stringify(favoritesData));
     }
   };
-  const handleRemoveFavoriteClick = (song) => {
-    dispatch({ type: "REMOVE_FAVORITE", payload: song });
-  };
 
-  // to log the updated favorites state
   useEffect(() => {
     console.log("After dispatch - favorites:", favorites);
   }, [favorites]);
@@ -158,18 +171,25 @@ function SongCards({ album }) {
             <button className="faplayclass">
               <FaPlay className="faplay" />
             </button>
-            {isFavorite(selectedSong) ? (
-              <FavoriteBorderIcon
-                onClick={() => handleRemoveFavoriteClick(selectedSong)}
-                sx={{ width: "40px", height: "40px", marginLeft: "20px" }}
-              />
-            ) : (
+            {!isFavorite(selectedSong) ? (
               <FavoriteBorderIcon
                 onClick={() => handleFavoriteClick(selectedSong)}
                 sx={{
                   width: "40px",
                   height: "40px",
                   marginLeft: "20px",
+                  cursor: "pointer",
+                }}
+              />
+            ) : (
+              <FavoriteIcon
+                onClick={() => handleFavoriteClick(selectedSong)}
+                sx={{
+                  width: "40px",
+                  height: "40px",
+                  marginLeft: "20px",
+                  cursor: "pointer",
+                  color: "pink",
                 }}
               />
             )}
@@ -209,6 +229,7 @@ function SongCards({ album }) {
                       sx={{
                         "&:last-child td, &:last-child th": { border: 0 },
                         color: "white",
+                        cursor: "pointer",
                       }}>
                       <TableCell
                         component="th"
@@ -276,46 +297,6 @@ function SongCards({ album }) {
                 {console.log(musicList)}
               </div>
             ))}
-            {/* <TableContainer
-              component={Paper}
-              sx={{
-                background: "linear-gradient(to bottom, #223c59, #121212)",
-                marginBottom: "47px",
-              }}>
-              <Table aria-label="simple table">
-                <TableBody>
-                  {selectedSong.map((song, id) => (
-                    <TableRow
-                      key={song._id}
-                      //   onClick={() => handleSongClick(song)}
-                      sx={{
-                        "&:last-child td, &:last-child th": { border: 0 },
-                        color: "white",
-                      }}>
-                      <TableCell
-                        component="th"
-                        scope="row"
-                        sx={{ color: "white", paddingLeft: "20px" }}>
-                        {id + 1}
-                      </TableCell>
-                      <TableCell
-                        align="right"
-                        sx={{ color: "white", display: "flex" }}>
-                        <div style={{ display: "flex", flex: "auto" }}>
-                          <img
-                            src={song.thumbnail}
-                            alt="Thumbnail"
-                            className="thumbnails"
-                            style={{ marginRight: "10px" }}
-                          />{" "}
-                          {song.title}
-                        </div>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer> */}
           </Box>
           <Footer />
         </div>

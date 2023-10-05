@@ -17,6 +17,8 @@ import {
 import "./signup.css"; // Make sure to import your custom CSS if needed
 import axios from "axios";
 
+import logo from "../../layouts/logo.png";
+
 const months = [
   "January",
   "February",
@@ -111,6 +113,11 @@ const Signup = () => {
           color: "black",
         }}>
         <div className="form-container">
+          <img
+            src={logo}
+            style={{ width: "50%", cursor: "pointer" }}
+            onClick={() => navigate("/")}
+          />
           <Typography
             variant="h4"
             sx={{

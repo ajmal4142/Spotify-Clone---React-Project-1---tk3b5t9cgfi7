@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Box, Container, Typography } from "@mui/material";
 import axios from "axios";
 import { useStateProvider } from "../utils/StateProvider";
+import logo from "../../layouts/logo.png";
 
 const Forgot = () => {
   const [, dispatch] = useStateProvider();
@@ -95,6 +96,11 @@ const Forgot = () => {
           mx: "auto",
         }}
         className="login-container">
+        <img
+          src={logo}
+          style={{ width: "50%", cursor: "pointer" }}
+          onClick={() => navigate("/")}
+        />
         <Typography
           variant="h5"
           sx={{ fontSize: "30px", my: "3rem", fontWeight: 600 }}>

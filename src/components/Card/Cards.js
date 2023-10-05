@@ -33,6 +33,7 @@ const Cards = ({ music }) => {
             height="129"
             width="100"
             image={music.image}
+            sx={{ cursor: "pointer" }}
             alt="green iguana"
           />
           <button className="play_btn">

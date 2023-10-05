@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Box, Container, Typography } from "@mui/material";
 import axios from "axios";
 import { useStateProvider } from "../utils/StateProvider";
+import logo from "../../layouts/logo.png";
 
 const Login = () => {
   const [, dispatch] = useStateProvider();
@@ -68,7 +69,7 @@ const Login = () => {
 
   return (
     <div style={{ background: "#191919" }}>
-      <Container sx={{ py: 10, display: "flex", justifyContent: "center" }}>
+      <Box>
         <Box
           sx={{
             background: "#000000",
@@ -76,11 +77,32 @@ const Login = () => {
             textAlign: "center",
             width: "50%",
             mx: "auto",
+            "@media(max-width:900px)": {
+              width: "80%",
+            },
+            "@media(max-width:500px)": {
+              width: "95%",
+            },
           }}
           className="login-container">
+          <img
+            src={logo}
+            style={{ width: "50%", cursor: "pointer" }}
+            onClick={() => navigate("/")}
+          />
           <Typography
             variant="h5"
-            sx={{ fontSize: "2.5rem", my: "3rem", fontWeight: 600 }}>
+            sx={{
+              fontSize: "2.5rem",
+              my: "3rem",
+              fontWeight: 600,
+              "@media(max-width:900px)": {
+                fontSize: "1.5rem",
+              },
+              "@media(max-width:500px)": {
+                fontSize: "1rem",
+              },
+            }}>
             Log in to Spotify
           </Typography>
           <div className="login-border"></div>
@@ -135,7 +157,7 @@ const Login = () => {
             </Link>
           </p>
         </Box>
-      </Container>
+      </Box>
     </div>
   );
 };

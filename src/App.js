@@ -33,10 +33,8 @@ const App = () => {
     const storedToken = localStorage.getItem("jwtToken");
 
     if (storedToken) {
-      dispatch({ type: "SET_NAME", payload: storedToken });
+      dispatch({ type: "SET_TOKEN", payload: storedToken });
     }
-    console.log("tokenn", token);
-    console.log("localStorage.getItem()", localStorage.getItem("jwtToken"));
   }, []);
 
   return (
@@ -68,6 +66,14 @@ const Main = () => {
 
     if (storedToken) {
       dispatch({ type: "SET_NAME", payload: storedToken });
+    }
+    const storedFavorites = JSON.parse(localStorage.getItem("favorites"));
+    if (
+      Array.isArray(storedFavorites) &&
+      storedFavorites.length > 0 &&
+      storedToken
+    ) {
+      dispatch({ type: "ADD_FAVORITE", payload: storedFavorites });
     }
   }, []);
   const width = window.screen.width;

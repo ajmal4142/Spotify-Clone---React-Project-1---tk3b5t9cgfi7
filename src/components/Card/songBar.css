@@ -21,6 +21,10 @@ audio {
 }
 
 
+.audioSpotify{
+    width: 75%;
+}
+
 .songIcons{
     width: 40px;
     height: 20px;
@@ -28,6 +32,24 @@ audio {
     color: rgb(164, 164, 164);
 }
 
+.unknownImg{
+    width:30px;
+    height:30px
+}
+
 .songIcons:hover{
     color: white
+}
+
+@media(max-width:440px){
+    .audioSpotify{
+        width: 93%;
+    }
+    
+}
+@media(max-width:370px){
+    .unknownImg{
+        display: none;
+    }
+
 }

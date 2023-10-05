@@ -126,8 +126,11 @@ function SideBar() {
         </Box>
         {/* Create Playlist */}
         <div>
-          {favorites.length != 0 ? (
-            <Box id="library2" onClick={() => navigate("/liked-song")}>
+          {favorites.length != 0 && localStorage.getItem("jwtToken") ? (
+            <Box
+              id="library2"
+              onClick={() => navigate("/liked-song")}
+              sx={{ cursor: "pointer" }}>
               <img src={favorite} style={{ width: "30px", height: "30px" }} />
               <h5
                 style={{

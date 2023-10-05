@@ -27,24 +27,22 @@ const reducer = (state, action) => {
       return { ...state, token: action.payload };
     case "SET_NAME":
       return { ...state, name: action.payload };
-    case "SET_SELECTED_ID":
-      return { ...state, name: action.payload };
     case "SET_SEARCH_SONG":
       return { ...state, searchSong: action.payload };
-    case "REMOVE_FAVORITE":
-      const songIdToRemove = action.payload.album;
-      const newFavoritesRemove = state.favorites.filter(
-        (id) => id !== songIdToRemove,
-      );
-      return { ...state, favorites: newFavoritesRemove };
     case "ADD_FAVORITE":
-      const songIdToAdd = action.payload.album;
-      if (!state.favorites.includes(songIdToAdd)) {
-        const newFavoritesAdd = [...state.favorites, songIdToAdd];
-        return { ...state, favorites: newFavoritesAdd };
+      return { ...state, favorites: action.payload };
+    case "TOGGLE_FAVORITE":
+      const updatedFavorites = [...state.favorites];
+      const song = action.payload;
+      const index = updatedFavorites?.findIndex(
+        (item) => item._id === song._id,
+      );
+      if (index === -1) {
+        updatedFavorites.push(song);
       } else {
-        return state; // Song is already a favorite, return the current state
+        updatedFavorites.splice(index, 1);
       }
+      return { ...state, favorites: updatedFavorites };
 
     default:
       return state;
