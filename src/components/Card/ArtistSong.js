@@ -61,9 +61,7 @@ const ArtistSong = () => {
     container: {
       display: "table-cell",
       color: "white",
-      [theme.breakpoints.down("md")]: {
-        display: "none",
-      },
+      "@media(max-width:600px)": { display: "none" },
     },
     container_two: {
       display: "table-cell",
@@ -133,10 +131,22 @@ const ArtistSong = () => {
                     #
                   </TableCell>
                   <TableCell sx={{ color: "white" }}>Title</TableCell>
-                  <TableCell align="right" sx={styles.container}>
+                  <TableCell
+                    align="right"
+                    sx={{
+                      display: "table-cell",
+                      color: "white",
+                      "@media(max-width:600px)": { display: "none" },
+                    }}>
                     Album
                   </TableCell>
-                  <TableCell align="right" sx={styles.container_two}>
+                  <TableCell
+                    align="right"
+                    sx={{
+                      display: "table-cell",
+                      color: "white",
+                      "@media(max-width:1100px)": { display: "none" },
+                    }}>
                     Date Added
                   </TableCell>
                 </TableRow>
@@ -149,6 +159,7 @@ const ArtistSong = () => {
                     sx={{
                       "&:last-child td, &:last-child th": { border: 0 },
                       color: "white",
+                      cursor: "pointer",
                     }}>
                     <TableCell
                       component="th"
@@ -170,10 +181,22 @@ const ArtistSong = () => {
                       </div>
                     </TableCell>
 
-                    <TableCell align="right" sx={styles.container}>
+                    <TableCell
+                      align="right"
+                      sx={{
+                        display: "table-cell",
+                        color: "white",
+                        "@media(max-width:600px)": { display: "none" },
+                      }}>
                       {song.title}
                     </TableCell>
-                    <TableCell align="right" sx={styles.container_two}>
+                    <TableCell
+                      align="right"
+                      sx={{
+                        display: "table-cell",
+                        color: "white",
+                        "@media(max-width:1100px)": { display: "none" },
+                      }}>
                       {dateCalculator(song.dateOfRelease)}
                     </TableCell>
                   </TableRow>

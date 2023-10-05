@@ -16,8 +16,8 @@ const Cards = ({ music }) => {
   const navigate = useNavigate();
 
   const handleCardClick = () => {
-    // console.log("click dispatch");
     dispatch({ type: "SET_SELECTED_CARD", payload: music });
+    console.log(music);
     navigate("/album");
   };
   return (

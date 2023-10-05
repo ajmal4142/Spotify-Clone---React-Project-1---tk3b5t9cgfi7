@@ -48,13 +48,33 @@ function SongCards({ album }) {
     return favorites.includes(songId);
   };
 
+  const handleCheckLike = (song) => {};
+
+  useEffect(() => {
+    var favoritesData = JSON.parse(localStorage.getItem("favorites")) || [];
+    const updatedSelectedSong = {
+      ...selectedSong,
+      color: favoritesData.some((item) => item._id === selectedSong._id),
+    };
+
+    dispatch({ type: "SET_SELECTED_SONG", payload: updatedSelectedSong });
+  }, []);
+
   const handleFavoriteClick = (song) => {
     if (!token) {
       alert("Please Login");
     } else {
+      var favoritesData = JSON.parse(localStorage.getItem("favorites")) || [];
+      const updatedSelectedSong = {
+        ...selectedSong,
+        color: favoritesData.some((item) => item._id === selectedSong._id)
+          ? false
+          : true,
+      };
+
+      dispatch({ type: "SET_SELECTED_SONG", payload: updatedSelectedSong });
       dispatch({ type: "TOGGLE_FAVORITE", payload: selectedSong });
 
-      var favoritesData = JSON.parse(localStorage.getItem("favorites")) || [];
       const isSongInFavorites = favoritesData.some(
         (item) => item._id === song._id,
       );
@@ -72,6 +92,18 @@ function SongCards({ album }) {
     }
   };
 
+  useEffect(() => {
+    var favoritesData = JSON.parse(localStorage.getItem("favorites")) || [];
+    const updatedSelectedSong = {
+      ...selectedSong,
+      color: favoritesData.some((item) => item._id === selectedSong._id),
+    };
+
+    if (updatedSelectedSong.color !== selectedSong.color) {
+      dispatch({ type: "SET_SELECTED_SONG", payload: updatedSelectedSong });
+    }
+    console.log("After dispatch - selectedSong:", selectedSong);
+  }, [selectedSong]);
   useEffect(() => {
     console.log("After dispatch - favorites:", favorites);
   }, [favorites]);
@@ -105,17 +137,6 @@ function SongCards({ album }) {
     updateMusicList();
   }, [selectedSong.artist, projectId]);
 
-  const styles = {
-    container: {
-      marginTop: "20px",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      fontFamily: "monospace",
-      textAlign: "center",
-    },
-  };
-
   const dateCalculator = (str) => {
     var utcDate = new Date(str);
     var localOffset = new Date().getTimezoneOffset();
@@ -147,9 +168,29 @@ function SongCards({ album }) {
       <div className="albumBody">
         <Box>
           <div className="onImage">
-            <Typography variant="h4" sx={styles.container}>
-              {selectedSong.title} from [{selectedCard.title} Album]
-            </Typography>
+            <Box display="flex" width="100%" justifyContent="space-evenly">
+              <img
+                src={selectedSong.thumbnail}
+                style={{ width: "150px", height: "150px" }}
+              />
+              <Typography
+                variant="h4"
+                sx={{
+                  marginTop: "20px",
+                  ml: "10px",
+                  fontSize: "22px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontFamily: "monospace",
+                  textAlign: "center",
+                  "@media(max-width:550px)": {
+                    fontSize: "19px",
+                  },
+                }}>
+                {selectedSong.title} from ({selectedCard.title} Album)
+              </Typography>
+            </Box>
             <Typography variant="h6" sx={{ marginTop: "20px" }}>
               {selectedCard.artists[0].name}
             </Typography>
@@ -171,17 +212,7 @@ function SongCards({ album }) {
             <button className="faplayclass">
               <FaPlay className="faplay" />
             </button>
-            {!isFavorite(selectedSong) ? (
-              <FavoriteBorderIcon
-                onClick={() => handleFavoriteClick(selectedSong)}
-                sx={{
-                  width: "40px",
-                  height: "40px",
-                  marginLeft: "20px",
-                  cursor: "pointer",
-                }}
-              />
-            ) : (
+            {selectedSong?.color ? (
               <FavoriteIcon
                 onClick={() => handleFavoriteClick(selectedSong)}
                 sx={{
@@ -190,6 +221,16 @@ function SongCards({ album }) {
                   marginLeft: "20px",
                   cursor: "pointer",
                   color: "pink",
+                }}
+              />
+            ) : (
+              <FavoriteBorderIcon
+                onClick={() => handleFavoriteClick(selectedSong)}
+                sx={{
+                  width: "40px",
+                  height: "40px",
+                  marginLeft: "20px",
+                  cursor: "pointer",
                 }}
               />
             )}
@@ -256,7 +297,6 @@ function SongCards({ album }) {
                         />{" "}
                         {song.title}
                       </TableCell>
-                      {/* {console.log("songs  ", song)} */}
                       <TableCell align="right" sx={style.container}>
                         {dateCalculator(song.dateOfRelease)}
                       </TableCell>
@@ -294,7 +334,6 @@ function SongCards({ album }) {
                 <Typography variant="h6" fontWeight={600} ml={2}>
                   {data.data.name}
                 </Typography>
-                {console.log(musicList)}
               </div>
             ))}
           </Box>

@@ -99,7 +99,7 @@ const SongBar = ({ songs }) => {
     <div className="songBar">
       {selectedSong ? (
         <Box
-          style={{
+          sx={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",

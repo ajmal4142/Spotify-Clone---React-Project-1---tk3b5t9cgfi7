@@ -21,9 +21,6 @@ const AlbumSongs = ({ album }) => {
   const [{ selectedCard, favorites, token, selectedSong }, dispatch] =
     useStateProvider();
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   console.log("albumSongs", selectedCard);
-  // }, [selectedCard]);
 
   const handleSongClick = (song) => {
     dispatch({ type: "SET_SELECTED_SONG", payload: song });
@@ -37,22 +34,6 @@ const AlbumSongs = ({ album }) => {
 
     return localTime.toLocaleString();
   };
-  // const styles = {
-  //   container: {
-  //     display: "table-cell",
-  //     color: "white",
-  //     [theme.breakpoints.down("900px")]: {
-  //       display: "none",
-  //     },
-  //   },
-  //   container_two: {
-  //     display: "table-cell",
-  //     color: "white",
-  //     [theme.breakpoints.down("900px")]: {
-  //       display: "none",
-  //     },
-  //   },
-  // };
 
   return (
     <Box
