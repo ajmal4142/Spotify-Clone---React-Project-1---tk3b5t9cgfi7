@@ -57,13 +57,13 @@ function Search() {
   return (
     <div style={{ marginTop: "50px" }}>
       {searchSong ? (
-        <div className="card ">
+        <div className="card " style={{ margin: "auto" }}>
           <Card
             sx={{ maxWidth: 160, ml: "40px" }}
             onClick={() => {
               handleCardClick();
             }}>
-            <CardActionArea>
+            <CardActionArea sx={{ width: "90%" }}>
               <CardMedia
                 component="img"
                 height="129"
