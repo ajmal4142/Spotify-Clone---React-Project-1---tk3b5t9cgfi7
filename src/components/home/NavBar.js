@@ -69,7 +69,7 @@ function NavBar() {
   const handleLogOut = () => {
     dispatch({ type: "SET_NAME", payload: null });
     dispatch({ type: "SET_TOKEN", payload: null });
-    dispatch({ type: "SET_FAVORITE", payload: [] });
+    dispatch({ type: "ADD_FAVORITE", payload: [] });
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("username");
     localStorage.removeItem("favorites");
