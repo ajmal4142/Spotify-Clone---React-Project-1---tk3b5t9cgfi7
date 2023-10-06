@@ -212,7 +212,7 @@ function SongCards({ album }) {
             <button className="faplayclass">
               <FaPlay className="faplay" />
             </button>
-            {selectedSong?.color ? (
+            {selectedSong?.color && !token ? (
               <FavoriteIcon
                 onClick={() => handleFavoriteClick(selectedSong)}
                 sx={{
