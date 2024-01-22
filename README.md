@@ -42,7 +42,8 @@ headers:
 }
 })
 
-Get list of albums:
+## Get list of albums:
+
 fetch('https://academics.newtonschool.co/api/v1/music/album', {
 headers: {
 'projectId': 'PROJECT_ID'
