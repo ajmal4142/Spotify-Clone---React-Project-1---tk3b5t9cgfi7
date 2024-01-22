@@ -22,7 +22,7 @@ Hope you enjoy and learn something!
 
 7.Added Subscription Modal
 
-Tech stacks : HTML, CSS, JavaScript, React
+# Tech stacks : HTML, CSS, JavaScript, React
 
 I have used the Icons from React and Material UI
 Project is completely responsive.
@@ -33,7 +33,7 @@ Used the StateProvider All over the project using createContext, useContext for 
 
 . Spotify is a popular music streaming platform that offers a vast library of songs, albums, and personalized recommendations. The Spotify clone will offer users a similar experience, enabling them to enjoy their favorite music and discover new tracks and artists.
 
-Use the following APIs to fetch music data:
+## Use the following APIs to fetch music data:
 
 Get list of music:
 fetch('https://academics.newtonschool.co/api/v1/music/song', {
