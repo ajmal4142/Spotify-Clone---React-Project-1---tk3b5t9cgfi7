@@ -1,4 +1,4 @@
-This project is done purely with respect for Spotify and especially its development team.
+# This project is done purely with respect for Spotify and especially its development team.
 
 Icons/SVGs etc I use in the video are owned by Spotify and I will not be deploying this application anywhere, neither should you.
 
@@ -6,7 +6,7 @@ Use this repository to follow along with me as I educate myself on best React.js
 
 Hope you enjoy and learn something!
 
-List of Features to be made:
+# List of Features to be made:
 
 1.Home Page and Featured Music
 
